@@ -4,6 +4,7 @@ import {validationResult} from "express-validator";
 import bcrypt from "bcrypt";
 import {User} from "../models/User.js";
 import jwt from "jsonwebtoken";
+import {checkAuth} from "../utils/checkAuth.js";
 
 const router = express.Router();
 
@@ -77,6 +78,23 @@ router.post('/login', loginValidation, async (req, res) => {
     } catch (err) {
         console.log(err.message);
         res.status(500).send({message: err.message});
+    }
+});
+
+router.get('/me', checkAuth, async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+
+        if (!user) {
+            return res.status(404).json({message: 'User not found'});
+        }
+
+        return res.status(200).json(user._doc);
+
+    } catch (err) {
+        res.status(500).json({
+            message: 'Account not found!'
+        });
     }
 });
 
