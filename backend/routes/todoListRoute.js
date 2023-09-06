@@ -1,10 +1,11 @@
 import {TodoList} from "../models/TodoList.js";
 import mongoose from "mongoose";
 import express from "express";
+import {checkAuth} from "../utils/checkAuth.js";
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', checkAuth,async (req, res) => {
     try {
         const {name} = req.body;
 
@@ -37,7 +38,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkAuth,async (req, res) => {
     try {
         const {name} = req.body;
         const {id} = req.params;
@@ -64,7 +65,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkAuth,async (req, res) => {
     try {
         const {id} = req.params;
 

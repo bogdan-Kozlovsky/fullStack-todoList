@@ -2,10 +2,11 @@ import mongoose from "mongoose";
 import {TodoList} from "../models/TodoList.js";
 import {Task} from "../models/Task.js";
 import express from "express";
+import {checkAuth} from "../utils/checkAuth.js";
 
 const router = express.Router();
 
-router.post('/:todoListId/task', async (req, res) => {
+router.post('/:todoListId/task', checkAuth, async (req, res) => {
     try {
         const {todoListId} = req.params;
         const {name, description, completed} = req.body;
@@ -39,7 +40,7 @@ router.post('/:todoListId/task', async (req, res) => {
     }
 });
 
-router.delete('/:todoListId/task/:taskId', async (req, res) => {
+router.delete('/:todoListId/task/:taskId', checkAuth, async (req, res) => {
     try {
         const {todoListId, taskId} = req.params;
 
@@ -71,7 +72,7 @@ router.delete('/:todoListId/task/:taskId', async (req, res) => {
     }
 });
 
-router.put('/:todoListId/task/:taskId', async (req, res) => {
+router.put('/:todoListId/task/:taskId', checkAuth, async (req, res) => {
     try {
         const {todoListId, taskId} = req.params;
         const {name, description, completed} = req.body;
