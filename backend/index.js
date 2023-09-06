@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use('/todolist', todolistRoute);
-app.use('/todolist', taskRoute);
+app.use('/task', taskRoute);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 
