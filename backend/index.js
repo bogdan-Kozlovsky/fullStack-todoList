@@ -3,12 +3,14 @@ import {MONGO_DB_URL, PORT} from './config.js';
 import mongoose from "mongoose";
 import todolistRoute from './routes/todoListRoute.js';
 import taskRoute from './routes/taskRoute.js';
+import authRouter from './routes/auth.js';
 
 const app = express();
 
 app.use(express.json());
 app.use('/todolist', todolistRoute);
 app.use('/todolist', taskRoute);
+app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
     return res.status(200).send('Hello node.js');
