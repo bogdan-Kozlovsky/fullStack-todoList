@@ -5,10 +5,11 @@ import bcrypt from "bcrypt";
 import {User} from "../models/User.js";
 import jwt from "jsonwebtoken";
 import {checkAuth} from "../utils/checkAuth.js";
+import {handleValidationErrors} from '../utils/handleValidationErrors.js';
 
 const router = express.Router();
 
-router.post('/register', registerValidation, async (req, res) => {
+router.post('/register', registerValidation, handleValidationErrors, async (req, res) => {
     try {
         const errors = validationResult(req);
 
@@ -48,7 +49,7 @@ router.post('/register', registerValidation, async (req, res) => {
     }
 });
 
-router.post('/login', loginValidation, async (req, res) => {
+router.post('/login', loginValidation, handleValidationErrors, async (req, res) => {
     try {
         const user = await User.findOne({email: req.body.email});
 

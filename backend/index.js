@@ -5,14 +5,19 @@ import todolistRoute from './routes/todoListRoute.js';
 import taskRoute from './routes/taskRoute.js';
 import authRouter from './routes/authRoute.js';
 import userRouter from './routes/userRoute.js';
+import uploadAvatar from './routes/uploadAvatarRoute.js';
 
 const app = express();
 
 app.use(express.json());
+
 app.use('/todolist', todolistRoute);
 app.use('/task', taskRoute);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/upload', uploadAvatar);
+
+app.use('/uploads', express.static('uploads'));
 
 app.get('/', (req, res) => {
     return res.status(200).send('Hello node.js');
