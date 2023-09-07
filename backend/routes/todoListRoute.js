@@ -5,7 +5,7 @@ import {checkAuth} from "../utils/checkAuth.js";
 
 const router = express.Router();
 
-router.post('/', checkAuth,async (req, res) => {
+router.post('/', checkAuth, async (req, res) => {
     try {
         const {name} = req.body;
 
@@ -16,6 +16,7 @@ router.post('/', checkAuth,async (req, res) => {
         const newTodoList = {
             name,
             tasks: [],
+            authorTodoList: req.userId
         }
 
         const todoList = await TodoList.create(newTodoList);
@@ -38,7 +39,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.put('/:id', checkAuth,async (req, res) => {
+router.put('/:id', checkAuth, async (req, res) => {
     try {
         const {name} = req.body;
         const {id} = req.params;
@@ -65,7 +66,7 @@ router.put('/:id', checkAuth,async (req, res) => {
     }
 });
 
-router.delete('/:id', checkAuth,async (req, res) => {
+router.delete('/:id', checkAuth, async (req, res) => {
     try {
         const {id} = req.params;
 

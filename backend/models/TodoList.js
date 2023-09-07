@@ -7,8 +7,12 @@ const TodoListSchema = new mongoose.Schema({
         unique: true,
     },
     tasks: {
-        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}],
         default: [],
+    },
+    authorTodoList: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     created_at: {
         type: Date,
