@@ -36,7 +36,7 @@ router.post('/register', registerValidation, handleValidationErrors, async (req,
             },
             'secret',
             {
-                expiresIn: '20d'
+                expiresIn: '1d'
             })
 
         return res.status(201).json({
@@ -68,7 +68,7 @@ router.post('/login', loginValidation, handleValidationErrors, async (req, res) 
             },
             'secret',
             {
-                expiresIn: '20d'
+                expiresIn: '1d'
             })
 
         return res.status(201).json({

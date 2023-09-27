@@ -1,7 +1,7 @@
 import {PATHS} from "../utils/types/Routes.enum";
 import {Login} from "../pages/login/Login";
 import {Registration} from "../pages/registration/Registration";
-import {Home} from "../pages/Home";
+import {Home} from "../pages/home/Home";
 import {Welcome} from "../pages/welcome/Welcome";
 
 const publicRoutes = [

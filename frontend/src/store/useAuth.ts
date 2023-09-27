@@ -1,13 +1,17 @@
 import {create} from "zustand";
 import jwt_decode from 'jwt-decode';
 
-interface AuthState {
+interface IAuthState {
   isLoggedIn: boolean
   checkLoginStatus: () => void
+  setIsLoggedIn: (status: boolean) => void
 }
 
-const useAuthStore = create<AuthState>((set) => ({
+const useAuthStore = create<IAuthState>((set) => ({
   isLoggedIn: false,
+  setIsLoggedIn: (status: boolean) => {
+    set({isLoggedIn: status})
+  },
   checkLoginStatus: () => {
     const token = localStorage.getItem('authToken')
 
