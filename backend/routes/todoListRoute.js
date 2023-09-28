@@ -19,9 +19,10 @@ router.post('/', checkAuth, async (req, res) => {
             authorTodoList: req.userId
         }
 
-        const todoList = await TodoList.create(newTodoList);
+        await TodoList.create(newTodoList);
+        const allTodoLists = await TodoList.find({}).populate('tasks');
 
-        return res.status(201).send(todoList);
+        return res.status(201).send(allTodoLists);
     } catch (err) {
         console.log(err.message);
         res.status(500).send({message: err.message});
