@@ -8,12 +8,8 @@ const Home = (): React.ReactElement => {
 
   const getUserInformation = async (): Promise<void> => {
     try {
-      const token = localStorage.getItem('authToken')
-
-      if (token) {
-        const response = await new AccountApi().me(token)
-        setUserInformation(response)
-      }
+      const response = await new AccountApi().me()
+      setUserInformation(response)
     } catch (e) {
       console.log(e)
     }
