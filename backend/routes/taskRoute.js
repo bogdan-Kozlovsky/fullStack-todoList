@@ -32,7 +32,9 @@ router.post('/:todoListId/task', checkAuth, async (req, res) => {
         todoList.tasks.push(newTask);
         await todoList.save();
 
-        return res.status(200).json(newTask)
+        const updateTodoList = await TodoList.findById(todoListId).populate('tasks');
+
+        return res.status(200).json(updateTodoList);
 
     } catch (err) {
         console.log(err.message);
