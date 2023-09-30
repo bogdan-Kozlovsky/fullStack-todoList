@@ -1,6 +1,7 @@
 import React from 'react';
 import {useUserInformationStore} from "../../store/useUserInformation";
 import {AccountApi} from "../../services/account/account";
+import {TodoLists} from "../../components/todoLists/TodoLists";
 
 const Home = (): React.ReactElement => {
   const {fullName} = useUserInformationStore(state => state.userInformation)
@@ -24,6 +25,7 @@ const Home = (): React.ReactElement => {
       <h1>HOME</h1>
       <p>{fullName}</p>
 
+      <TodoLists/>
     </div>
   );
 };
