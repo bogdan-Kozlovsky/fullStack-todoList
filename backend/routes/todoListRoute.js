@@ -59,7 +59,10 @@ router.put('/:id', checkAuth, async (req, res) => {
             return res.status(404).json({message: 'TodoList not found'});
         }
 
-        return res.status(200).send({message: 'TodoList updated successfully'});
+        return res.status(200).send({
+            success: true,
+            message: 'TodoList updated successfully',
+        });
 
     } catch (err) {
         console.log(err.message);
@@ -81,7 +84,10 @@ router.delete('/:id', checkAuth, async (req, res) => {
             return res.status(404).send({message: 'TodoList not found'});
         }
 
-        return res.status(200).send({message: 'TodoList successfully deleted'});
+        return res.status(200).send({
+            success: true,
+            message: 'TodoList successfully deleted',
+        });
 
     } catch (err) {
         console.log(err.message);
